@@ -13,38 +13,55 @@ long printAndReturnCurrentWorkingSet(Process process)
     return currWorkingSet;
 }
 
-// Тестируем стек
+// Заполняем стек
 MyStack<int> stack = new MyStack<int>();
 stack.Push(1);
 stack.Push(2);
 stack.Push(3);
+
+// Тестируем стек
 Console.WriteLine("Текущий стек: {3, 2, 1}");
-while (stack.Count != 0)
-{
-    int data = stack.Pop();
-    Console.WriteLine(data);
-}
-// Тестируем очередь
+stack.PrintStack();
+
+Console.WriteLine($"Ищем элемент 2: {stack.Contains(2)}");
+
+int popped = stack.Pop();
+Console.WriteLine($"Вытащили элемент {popped}");
+stack.PrintStack();
+
+// Заполняем очередь
 MyQueue<int> queue = new MyQueue<int>();
 queue.Enqueue(1);
 queue.Enqueue(2);
 queue.Enqueue(3);
+
+// Тестируем очередь
 Console.WriteLine("Текущая очередь: {1, 2, 3}");
-while (!queue.IsEmpty())
-{
-    int data = queue.Dequeue();
-    Console.WriteLine(data);
-}
-// Тестируем двусвязный список
+queue.PrintQueue();
+
+popped = queue.Dequeue();
+Console.WriteLine($"Вытащили элемент {popped}");
+queue.PrintQueue();
+
+// Заполняем двусвязный список
 DoublyLinkedList<string> doublyLinkedList = new DoublyLinkedList<string>();
-doublyLinkedList.AddToBack("back1");
-doublyLinkedList.AddToBack("back2");
-doublyLinkedList.AddToBack("back3");
 doublyLinkedList.AddToFront("front1");
+doublyLinkedList.AddToBack("back1");
 doublyLinkedList.AddToFront("front2");
+doublyLinkedList.AddToBack("back2");
 doublyLinkedList.AddToFront("front3");
+doublyLinkedList.AddToBack("back3");
 doublyLinkedList.InsertAfter("front1", "insertedInTheMiddle");
+
+// Тестируем двусвязный список
+Console.WriteLine("ожидаемый лист: {front3, front2, front1, insertedInTheMiddle, back1, back2, back3}");
 doublyLinkedList.PrintList();
+
+doublyLinkedList.Remove("insertedInTheMiddle");
+doublyLinkedList.Remove("back2");
+Console.WriteLine("ожидаемый лист: {front3, front2, front1, back1, back3}");
+doublyLinkedList.PrintList();
+
 
 stack = null;
 queue = null;

@@ -76,5 +76,17 @@ namespace AlgoLab1
 
             return false;
         }
+
+        public void PrintStack()
+        {
+
+            var current = top;
+            while (current != null)
+            {
+                Console.Write(current.Data + " ");
+                current = current.Next;
+            }
+            Console.WriteLine();
+        }
     }
 }
